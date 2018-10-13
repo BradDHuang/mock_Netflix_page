@@ -1,0 +1,5 @@
+
+export const ITEMS_LOADING = "ITEMS_LOADING";
+export const GET_ITEMS_SUCCESS = "GET_ITEMS_SUCCESS";
+export const GET_ITEMS_FAIL = "GET_ITEMS_FAIL";
+
