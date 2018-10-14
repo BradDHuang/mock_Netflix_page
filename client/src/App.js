@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getItems } from "./actions/itemActions";
+import { getItems, removeItem } from "./actions/itemActions";
 import Row from "./components/Row";
+import "./App.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
   constructor(props) {
@@ -13,13 +15,15 @@ class App extends Component {
   }
   render() {
     const { items } = this.props.item;
-    console.log(items.mylist, items.recommendations);
+    // console.log(items.mylist, items.recommendations);
     // Rows are returned when there is No err. and loading is finished.
     if (!this.props.item.err && items.mylist !== undefined) {
       return (
         <div>
           {"Mylist:"}
-          <Row list={items.mylist} />
+          <Row list={items.mylist} 
+            removeFromMylist={this.props.removeItem}
+          />
           <br />
           {"Recommendations: "}
           <Row list={items.recommendations} />
@@ -35,5 +39,5 @@ const mapStateToProps = (state) => ({
     item: state.item,
 });
 
-export default connect(mapStateToProps, { getItems })(App);
+export default connect(mapStateToProps, { getItems, removeItem })(App);
 

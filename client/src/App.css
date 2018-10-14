@@ -1,0 +1,16 @@
+.films {
+    display: flex;
+}
+
+.film {
+    border-style: solid;
+    border-color: #404040;
+    border-width: 1px 0.5px;
+    background-color: #505050;
+}
+
+.title {
+    text-align: center;
+    color: #FFFFFF;
+    font-family: Arial;
+}

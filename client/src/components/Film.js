@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { Button } from 'reactstrap';
 
 class Film extends Component {
   constructor(props) {
@@ -7,8 +8,16 @@ class Film extends Component {
   }
   render() {
     return (
-     <div>
-      {"Film title: "}{this.props.title}
+     <div className="film">
+      <img src={this.props.img} alt="poster" onMouseOver={this.props.onMouseOver} />
+      <div className="title">{this.props.title}</div>
+      {this.props.isHovering &&
+        <Button color="danger" size="sm"
+          onClick={this.props.onRemove}
+        >
+          Remove
+        </Button>
+      }
      </div>
     );
   }
