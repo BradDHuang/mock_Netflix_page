@@ -20,18 +20,22 @@ class App extends Component {
     if (!this.props.item.err && items.mylist !== undefined) {
       return (
         <div>
-          {"Mylist:"}
+          <h1 style={{ color: "red", paddingLeft: "10px" }}>{"Mock Netflix Page"}</h1>
+          <div className="rows">
+          <div className="row_name">{"MY LIST"}</div>
           <Row list={items.mylist} 
             add={false}
             removeFromMylist={this.props.removeItem}
           />
-          <br />
-          {"Recommendations: "}
+          </div>
+          <div className="rows">
+          <div className="row_name">{"RECOMMENDATIONS"}</div>
           <Row list={items.recommendations} 
             add={true}
             // removeFromRecommendations={this.props.removeItem}
             addToMylist={this.props.addItem}
           />
+          </div>
         </div>
       );
     } else {

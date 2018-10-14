@@ -33,13 +33,14 @@ class Row extends Component {
   render() {
     return (
      <div className="films">
-      {this.props.list.map(film => (
-        <Film key={film.id} 
-          title={film.title} img={film.img} 
-          onMouseOver={() => this.hoveringOver(film.id)} 
-          isHovering={this.state.imagesToHover[film.id]}
-          onRemove={() => this.onRemove(film.id)}
-          onAdd={() => this.onAdd(film.id)}
+      {this.props.list.map(({ id, title, img}) => (
+        <Film key={id} 
+          title={title} img={img} 
+          onMouseOver={() => this.hoveringOver(id)} 
+          onMouseLeave={() => this.hideBtn(id)}
+          isHovering={this.state.imagesToHover[id]}
+          onRemove={() => this.onRemove(id)}
+          onAdd={() => this.onAdd(id)}
           add={this.props.add}
         />
       ))}

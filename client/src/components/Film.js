@@ -8,13 +8,16 @@ class Film extends Component {
   }
   render() {
     return (
-     <div className="film">
-      <img src={this.props.img} alt="poster" onMouseOver={this.props.onMouseOver} />
+     <div className="film" onMouseLeave={this.props.onMouseLeave}>
+      <img src={this.props.img} alt="poster" 
+        onMouseOver={this.props.onMouseOver}
+      />
       <div className="title">{this.props.title}</div>
+      <div className="btns">
       {this.props.isHovering ?
         (
         this.props.add ?
-        <Button color="warning" size="sm"
+        <Button color="success" size="sm"
           onClick={this.props.onAdd}
         >
           Add
@@ -26,6 +29,7 @@ class Film extends Component {
         </Button>
         ) : (null)
       }
+      </div>
      </div>
     );
   }
