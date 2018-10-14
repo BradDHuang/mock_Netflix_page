@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getItems, removeItem } from "./actions/itemActions";
+import { getItems, removeItem, addItem } from "./actions/itemActions";
 import Row from "./components/Row";
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,11 +22,16 @@ class App extends Component {
         <div>
           {"Mylist:"}
           <Row list={items.mylist} 
+            add={false}
             removeFromMylist={this.props.removeItem}
           />
           <br />
           {"Recommendations: "}
-          <Row list={items.recommendations} />
+          <Row list={items.recommendations} 
+            add={true}
+            // removeFromRecommendations={this.props.removeItem}
+            addToMylist={this.props.addItem}
+          />
         </div>
       );
     } else {
@@ -39,5 +44,5 @@ const mapStateToProps = (state) => ({
     item: state.item,
 });
 
-export default connect(mapStateToProps, { getItems, removeItem })(App);
+export default connect(mapStateToProps, { getItems, removeItem, addItem })(App);
 

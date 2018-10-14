@@ -11,12 +11,20 @@ class Film extends Component {
      <div className="film">
       <img src={this.props.img} alt="poster" onMouseOver={this.props.onMouseOver} />
       <div className="title">{this.props.title}</div>
-      {this.props.isHovering &&
+      {this.props.isHovering ?
+        (
+        this.props.add ?
+        <Button color="warning" size="sm"
+          onClick={this.props.onAdd}
+        >
+          Add
+        </Button> :
         <Button color="danger" size="sm"
           onClick={this.props.onRemove}
         >
           Remove
         </Button>
+        ) : (null)
       }
      </div>
     );

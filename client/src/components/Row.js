@@ -15,20 +15,32 @@ class Row extends Component {
   onRemove(filmId) {
     if (this.state.imagesToHover[filmId]) {
       this.props.removeFromMylist(filmId);
-      let imagesHovering = [...this.state.imagesToHover];
-      imagesHovering[filmId] = false;
-      this.setState({ imagesToHover: imagesHovering });
+      this.hideBtn(filmId);
     }
+  }
+  onAdd(filmId) {
+    if (this.state.imagesToHover[filmId]) {
+      this.props.addToMylist(filmId);
+      // this.props.removeFromRecommendations(filmId);
+      this.hideBtn(filmId);
+    }
+  }
+  hideBtn(filmId) {
+    let imagesHovering = [...this.state.imagesToHover];
+    imagesHovering[filmId] = false;
+    this.setState({ imagesToHover: imagesHovering });
   }
   render() {
     return (
      <div className="films">
-      {this.props.list.map((film, index) => (
-        <Film key={index} 
+      {this.props.list.map(film => (
+        <Film key={film.id} 
           title={film.title} img={film.img} 
           onMouseOver={() => this.hoveringOver(film.id)} 
           isHovering={this.state.imagesToHover[film.id]}
           onRemove={() => this.onRemove(film.id)}
+          onAdd={() => this.onAdd(film.id)}
+          add={this.props.add}
         />
       ))}
      </div>

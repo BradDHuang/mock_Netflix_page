@@ -39,3 +39,24 @@ export const removeItem = (id) => dispatch => {
             })
         );
 };
+
+export const addItem = (id) => dispatch => {
+    
+    axios({method: "put", url: `https://mock-netflix-page-happitt.c9users.io:8081/api/items/${id}`})
+        .then(res => 
+            dispatch({
+                type: GET_ITEMS_SUCCESS,
+                payload: res.data,
+            })
+        )
+        .catch(err => 
+            dispatch({
+                type: GET_ITEMS_FAIL,
+                err,
+            })
+        );
+};
+
+
+
+
