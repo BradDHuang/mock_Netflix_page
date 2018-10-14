@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getItems } from "./actions/itemActions";
+import Row from "./components/Row";
 
 class App extends Component {
   constructor(props) {
@@ -13,11 +14,20 @@ class App extends Component {
   render() {
     const { items } = this.props.item;
     console.log(items.mylist, items.recommendations);
-    return (
+    // Rows are returned when there is No err. and loading is finished.
+    if (!this.props.item.err && items.mylist !== undefined) {
+      return (
         <div>
-          {"items"}
+          {"Mylist:"}
+          <Row list={items.mylist} />
+          <br />
+          {"Recommendations: "}
+          <Row list={items.recommendations} />
         </div>
-    );
+      );
+    } else {
+      return null;
+    }
   }
 }
 
